@@ -1,8 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.LittleWhaleUniverse" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">#87CEFA</item>
+        <item name="colorOnPrimary">#FFFFFFFF</item>
+        <item name="colorSecondary">#B3E5FC</item>
+        <item name="colorPrimaryContainer">#BBDEFB</item>
     </style>
 
     <style name="Theme.LittleWhaleUniverse" parent="Base.Theme.LittleWhaleUniverse" />

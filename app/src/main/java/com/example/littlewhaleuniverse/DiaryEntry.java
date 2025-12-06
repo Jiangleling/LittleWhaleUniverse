@@ -4,20 +4,12 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-
-// @Entity注解，tableName指定了数据库中表的名字。
 @Entity(tableName = "diaries")
-
 public class DiaryEntry {
-
-    //@PrimaryKey 注解将id字段设置为主键
-    //autoGenerate = true 表示id将由数据库自动生成
 
     @PrimaryKey(autoGenerate = true)
     public int id;
 
-    // @ColumnInfo注解可以为表中的列指定一个不同的名字。
-    // 如果不指定，则默认使用字段名。
     @ColumnInfo(name = "title")
     public String title;
 
@@ -27,15 +19,26 @@ public class DiaryEntry {
     @ColumnInfo(name = "timestamp")
     private long timestamp;
 
-    // 构造函数，用于创建DiaryEntry对象
-    public DiaryEntry(String title,String content, long timestamp){
+    @ColumnInfo(name = "mood")
+    private int mood;
+
+    @ColumnInfo(name = "image_uri")
+    private String imageUri;
+
+    @ColumnInfo(name = "tags")
+    private String tags;
+
+    @ColumnInfo(name = "audio_uri")
+    private String audioUri;
+
+    @ColumnInfo(name = "insight")
+    private String insight;
+
+    public DiaryEntry(String title, String content, long timestamp) {
         this.title = title;
         this.content = content;
         this.timestamp = timestamp;
     }
-
-    // --- 下面是标准的Getters和Setters ---
-    // Room需要这些方法来访问字段
     public int getId() {
         return id;
     }
@@ -66,5 +69,45 @@ public class DiaryEntry {
 
     public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public int getMood() {
+        return mood;
+    }
+
+    public void setMood(int mood) {
+        this.mood = mood;
+    }
+
+    public String getImageUri() {
+        return imageUri;
+    }
+
+    public void setImageUri(String imageUri) {
+        this.imageUri = imageUri;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
+    }
+
+    public String getAudioUri() {
+        return audioUri;
+    }
+
+    public void setAudioUri(String audioUri) {
+        this.audioUri = audioUri;
+    }
+
+    public String getInsight() {
+        return insight;
+    }
+
+    public void setInsight(String insight) {
+        this.insight = insight;
     }
 }

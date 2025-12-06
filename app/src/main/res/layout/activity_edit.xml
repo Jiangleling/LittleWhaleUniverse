@@ -4,56 +4,198 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FDFCF3"
+    android:fitsSystemWindows="true"
     tools:context=".EditDiaryActivity">
 
-    <!-- 标题输入框 -->
-    <EditText
-        android:id="@+id/edittext_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:hint="给日记起个标题吧"
-        android:inputType="textCapSentences"
-        android:maxLines="1"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
-        app:layout_constraintEnd_toEndOf="parent"
+
+    <!-- Top Bar: Close, Date, Save -->
+    <ImageButton
+        android:id="@+id/button_close"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Close"
+        android:src="@drawable/ic_close"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:autofillHints="name" />
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp" />
 
-    <!-- 内容输入框，放在一个可以滚动的视图里 -->
+    <TextView
+        android:id="@+id/text_month"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nov 2025"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toTopOf="@id/button_close"
+        app:layout_constraintBottom_toBottomOf="@id/button_close"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageButton
+        android:id="@+id/button_save"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Save"
+        android:src="@drawable/ic_check"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp" />
+
     <ScrollView
-        android:id="@+id/scroll_view_content"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@id/button_save"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_close"
+        app:layout_constraintBottom_toTopOf="@id/bottom_toolbar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edittext_title">
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <EditText
-            android:id="@+id/edittext_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:background="@null"
-            android:gravity="top"
-            android:hint="记录今天发生的一切..."
-            android:inputType="textMultiLine"
-            android:autofillHints="password" />
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:id="@+id/textview_diary_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="03"
+                android:textSize="48sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textview_day_of_week"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mon"
+                android:textSize="16sp"
+                android:textColor="@android:color/darker_gray"
+                app:layout_constraintTop_toBottomOf="@id/textview_diary_time"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <ImageView
+                android:id="@+id/mood_image"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/ic_mood_4"
+                app:layout_constraintTop_toBottomOf="@id/textview_day_of_week"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:contentDescription="Selected Mood" />
+
+            <TextView
+                android:id="@+id/mood_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Good"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@id/mood_image"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <FrameLayout
+                android:id="@+id/image_preview_container"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:visibility="gone"
+                tools:visibility="visible"
+                app:layout_constraintTop_toBottomOf="@id/mood_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp">
+
+                <ImageView
+                    android:id="@+id/image_preview"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="centerCrop"/>
+
+                <ImageButton
+                    android:id="@+id/button_remove_image"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_close_circle"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="top|end"
+                    android:layout_margin="4dp"/>
+
+            </FrameLayout>
+
+            <EditText
+                android:id="@+id/edittext_content"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:gravity="top"
+                android:hint="Write today..."
+                android:inputType="textMultiLine"
+                android:padding="16dp"
+                android:minHeight="200dp"
+                android:textColor="@android:color/black"
+                app:layout_constraintTop_toBottomOf="@id/image_preview_container"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="16dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-    <!-- 保存按钮 -->
-    <Button
-        android:id="@+id/button_save"
+    <!-- Bottom Toolbar -->
+    <LinearLayout
+        android:id="@+id/bottom_toolbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:padding="12dp"
-        android:text="保存"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingVertical="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:background="#FDFCF3">
+        
+        <ImageButton
+            android:id="@+id/button_pick_image"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_image"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Add Image" />
+
+        <ImageButton
+            android:id="@+id/button_bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_bold"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Bold" />
+
+        <ImageButton
+            android:id="@+id/button_list"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_list"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Bullet List" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

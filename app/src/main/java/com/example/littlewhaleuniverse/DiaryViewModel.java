@@ -10,18 +10,20 @@ public class DiaryViewModel extends AndroidViewModel {
     private DiaryRepository mRepository;
     private final LiveData<List<DiaryEntry>> mAllDiaries;
 
-    public DiaryViewModel (Application application) {
+    public DiaryViewModel(Application application) {
         super(application);
         mRepository = new DiaryRepository(application);
         mAllDiaries = mRepository.getAllDiaries();
     }
 
-    // 向UI暴露LiveData，以便UI可以观察数据变化
-    public LiveData<List<DiaryEntry>> getAllDiaries() {
+    LiveData<List<DiaryEntry>> getAllDiaries() {
         return mAllDiaries;
     }
 
-    // 向UI暴露插入方法，ViewModel将调用Repository的相应方法
+    public LiveData<List<DiaryEntry>> getRecentDiaries(long sinceTimestamp) {
+        return mRepository.getRecentDiaries(sinceTimestamp);
+    }
+
     public void insert(DiaryEntry diaryEntry) {
         mRepository.insert(diaryEntry);
     }

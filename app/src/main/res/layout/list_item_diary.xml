@@ -13,18 +13,35 @@
         android:layout_height="wrap_content"
         android:padding="16dp">
 
-        <!-- 用于显示日记标题 -->
+        <ImageView
+            android:id="@+id/image_thumb"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/textview_diary_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            app:layout_constraintStart_toEndOf="@id/image_thumb"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="My First Diary Title" />
 
-        <!-- 用于显示日记日期或内容预览 -->
+        <TextView
+            android:id="@+id/textview_diary_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+            app:layout_constraintStart_toEndOf="@id/image_thumb"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textview_diary_title"
+            tools:text="2025-11-19 14:32" />
+
         <TextView
             android:id="@+id/textview_diary_preview"
             android:layout_width="0dp"
@@ -33,10 +50,18 @@
             android:maxLines="2"
             android:ellipsize="end"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+            app:layout_constraintStart_toEndOf="@id/image_thumb"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textview_diary_title"
+            app:layout_constraintTop_toBottomOf="@id/textview_diary_time"
             tools:text="This is a short preview of the diary content. It shows what the entry is about and will truncate if it's too long..." />
+
+        <TextView
+            android:id="@+id/textview_mood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/image_thumb"
+            app:layout_constraintTop_toBottomOf="@id/textview_diary_preview"
+            tools:text="🙂" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

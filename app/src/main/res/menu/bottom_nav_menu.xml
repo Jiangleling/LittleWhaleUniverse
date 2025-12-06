@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_diary"
+        android:title="Diary"
+        android:icon="@drawable/ic_nav_diary"/>
+    <item
+        android:id="@+id/nav_ai"
+        android:title="AI Assistant"
+        android:icon="@drawable/ic_nav_ai"/>
+    <item
+        android:id="@+id/nav_universe"
+        android:title="Universe"
+        android:icon="@drawable/ic_nav_universe"/>
+</menu>
